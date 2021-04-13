@@ -1,6 +1,5 @@
 import React from 'react'
 import {Link} from "react-router-dom"
-
 import { AppBar, Avatar, Button, Toolbar, Typography } from "@material-ui/core"
 
 export default function Navbar() {
@@ -17,7 +16,7 @@ export default function Navbar() {
                             <Button variant="contained"> logout</Button>
                         </div>
                     ) : (
-                        <Button component={Link} to="/oath" variant="contained" color="primary">sign in</Button>
+                        <Button component={Link} to="/auth" variant="contained" color="primary">sign in</Button>
                     )
                 }
             </Toolbar>

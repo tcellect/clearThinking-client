@@ -1,23 +1,35 @@
-import React from 'react'
-import { AppBar, InputBase, Button } from "@material-ui/core"
-import SearchIcon from '@material-ui/icons/Search';
+import React from "react";
+import { AppBar, InputBase, Button, Grid } from "@material-ui/core";
+import SearchIcon from "@material-ui/icons/Search";
 
-export default function Form(props) {
+
+// TODO: find out why formatting makes 2 spaces
+export default function Form({ setBias, handleSubmit, bias }) {
     return (
-        <form onSubmit={(e) => props.handleSubmit(e)}>
-        <AppBar position="static" color="inherit">
-            <InputBase 
-            id="base-input"
-            placeholder={'your sentence'}
-            onChange={(e) => props.setBias({...props.bias, biasText: e.target.value})}
-            endAdornment={
-              <Button type="submit" variant="contained" color="primary" disableElevation startIcon={<SearchIcon />}>
-                find
-              </Button>
-            }
-            >
-            </InputBase>
-        </AppBar>
-      </form>
-    )
+        <form onSubmit={(e) => handleSubmit(e)}>
+            <Grid>
+                <InputBase
+                    id="base-input"
+                    placeholder={"your sentence"}
+                    onChange={(e) =>
+                        setBias({
+                            ...bias,
+                            biasText: e.target.value,
+                        })
+                    }
+                    endAdornment={
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            disableElevation
+                            startIcon={<SearchIcon />}
+                        >
+                            find
+                        </Button>
+                    }
+                ></InputBase>
+            </Grid>
+        </form>
+    );
 }
