@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import GoogleLogin from "react-google-login";
 import {
     Avatar,
     Button,
@@ -6,11 +7,13 @@ import {
     Grid,
     Typography,
     Container,
+    Icon,
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import InputField from "./InputField/InputField.js";
 
 export default function Auth() {
+    const googleId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
     const [showPassword, setShowPassword] = useState(false);
     const [isSignUp, setIsSignUp] = useState(false);
     const doRegister = () => {
@@ -19,6 +22,21 @@ export default function Auth() {
     const onSubmit = () => {};
     const handleChange = () => {};
     const handleShowPassword = () => setShowPassword((prevState) => !prevState);
+    const googleSuccess = async (res) => {
+        const result = res?.profileObj;
+        const token = res?.tokenId;
+
+        // TODO: before app got too complicated think of using a state manager like redux
+        // TODO: add log out as well
+        try {
+            localStorage.setItem("profile", JSON.stringify({...result, token}))
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    const googleFailure = () => {
+        console.log("failed to login with google")
+    }
     return (
         <Container component="main" maxWidth="xs">
             <Paper elevation={3}>
@@ -77,6 +95,23 @@ export default function Auth() {
                     >
                         {isSignUp ? "Sign Up" : "Sign In"}
                     </Button>
+                    <GoogleLogin
+                        clientId={googleId}
+                        onSuccess={googleSuccess}
+                        onFailure={googleFailure}
+                        cookiePolicy="single_host_origin"
+                        render={(renderProps) => (
+                            <Button
+                                color="primary"
+                                fullWidth
+                                onClick={renderProps.onClick}
+                                disabled={renderProps.disabled}
+                                variant="contained"
+                            >
+                                Google Sing In
+                            </Button>
+                        )}
+                    />
                     <Grid container justift="flex-end">
                         <Grid item>
                             <Button onClick={doRegister}>

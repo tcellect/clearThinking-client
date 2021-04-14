@@ -24,7 +24,7 @@ export default function InputField({
                 autoFocus={autofocus}
                 type={type}
                 InputProps={
-                    name === "password" && {
+                    name === "password" ? {
                         endAdornment: (
                             <InputAdornment position="end">
                                 <IconButton onClick={handleShowPassword}>
@@ -36,7 +36,7 @@ export default function InputField({
                                 </IconButton>
                             </InputAdornment>
                         ),
-                    }
+                    } : null
                 }
             />
         </Grid>
