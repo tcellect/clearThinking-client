@@ -9,6 +9,7 @@ import {
     Container,
     Icon,
 } from "@material-ui/core";
+import { signin, signup } from "../../api/index.js";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import InputField from "./InputField/InputField.js";
 
@@ -16,11 +17,27 @@ export default function Auth() {
     const googleId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
     const [showPassword, setShowPassword] = useState(false);
     const [isSignUp, setIsSignUp] = useState(false);
+    const [formData, setFormData] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+    });
     const doRegister = () => {
         setIsSignUp((prevState) => !prevState);
     };
-    const onSubmit = () => {};
-    const handleChange = () => {};
+    const onSubmit = (e) => {
+        e.preventDefault();
+        if (isSignUp) {
+            signup(formData);
+        } else {
+            signin(formData);
+        }
+    };
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
     const handleShowPassword = () => setShowPassword((prevState) => !prevState);
     const googleSuccess = async (res) => {
         const result = res?.profileObj;
@@ -29,14 +46,17 @@ export default function Auth() {
         // TODO: before app got too complicated think of using a state manager like redux
         // TODO: add log out as well
         try {
-            localStorage.setItem("profile", JSON.stringify({...result, token}))
+            localStorage.setItem(
+                "profile",
+                JSON.stringify({ ...result, token })
+            );
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
-    }
+    };
     const googleFailure = () => {
-        console.log("failed to login with google")
-    }
+        console.log("failed to login with google");
+    };
     return (
         <Container component="main" maxWidth="xs">
             <Paper elevation={3}>
@@ -58,8 +78,8 @@ export default function Auth() {
                                     half
                                 ></InputField>
                                 <InputField
-                                    name="firstName"
-                                    label="First name"
+                                    name="lastName"
+                                    label="Last name"
                                     handleChange={handleChange}
                                     half
                                 ></InputField>
