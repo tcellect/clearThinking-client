@@ -8,10 +8,9 @@ import {
     CardContent,
     makeStyles,
     CardActionArea,
-    List,
     Button,
-    Divider,
 } from "@material-ui/core";
+import { Link, useRouteMatch } from "react-router-dom";
 
 const useStyles = makeStyles({
     root: {
@@ -25,7 +24,7 @@ const useStyles = makeStyles({
 export default function Cognition() {
     const classes = useStyles();
 
-    const handleClick = () => {};
+    let { url } = useRouteMatch();
 
     return (
         <Grid item xs={3}>
@@ -61,7 +60,13 @@ export default function Cognition() {
                     <Button size="small" color="primary">
                         Share
                     </Button>
-                    <Button size="small" color="primary" onClick={handleClick}>
+                    <Button
+                        size="small"
+                        color="primary"
+                        component={Link}
+                        // TODO: make it dynamic
+                        to={`${url}/makemedynamic`}
+                    >
                         Edit
                     </Button>
                 </CardActions>
