@@ -8,6 +8,9 @@ import {
 import { getBiases, postBias } from "../../api/index.js";
 import useStyles from "./styles.js"
 
+
+// TODO: remove bias checking from here
+// TODO: make this component provide general information about the project, methodology and app
 export default function Home() {
 	const classes = useStyles();
 

@@ -4,6 +4,7 @@ import SearchIcon from "@material-ui/icons/Search";
 
 
 // TODO: find out why formatting makes 2 spaces
+// TODO: move this login into cognition and leave for better AI days
 export default function Form({ setBias, handleSubmit, bias }) {
     return (
         <form onSubmit={(e) => handleSubmit(e)}>
