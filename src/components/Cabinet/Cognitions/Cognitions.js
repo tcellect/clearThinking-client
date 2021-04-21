@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Card, Typography } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import Cognition from "./Cognition/Cognition"
 
 export default function Cognitions() {

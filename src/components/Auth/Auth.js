@@ -7,7 +7,6 @@ import {
     Grid,
     Typography,
     Container,
-    Icon,
 } from "@material-ui/core";
 import { signin, signup } from "../../api/index.js";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -36,7 +35,10 @@ export default function Auth() {
         }
     };
     const handleChange = (e) => {
+        e.preventDefault();
+        console.log(e.target.value)
         setFormData({ ...formData, [e.target.name]: e.target.value });
+        console.log(formData.firstName)
     };
     const handleShowPassword = () => setShowPassword((prevState) => !prevState);
     const googleSuccess = async (res) => {

@@ -32,6 +32,7 @@ export default function Cognition() {
                 <CardActionArea>
                     <CardMedia
                         className={classes.media}
+                        // TODO: replace it with randomly generated pixelart
                         image="https://picsum.photos/200/300?blur"
                         title="Contemplative Reptile"
                     />

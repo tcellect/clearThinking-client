@@ -1,5 +1,4 @@
 import React from "react";
-import useStyles from "./styles.js";
 import Navbar from "./components/Navbar/Navbar";
 import Auth from "./components/Auth/Auth.js";
 import Home from "./components/Home/Home.js";

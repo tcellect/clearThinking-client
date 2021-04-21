@@ -1,11 +1,10 @@
-import Form from "../Form/Form.js";
 import React, { useState, useEffect } from "react";
 import {
     Container,
     Typography,
     Grid,
 } from "@material-ui/core";
-import { getBiases, postBias } from "../../api/index.js";
+import { getTickets, postTicket } from "../../api/index.js";
 import useStyles from "./styles.js"
 
 
@@ -14,30 +13,22 @@ import useStyles from "./styles.js"
 export default function Home() {
 	const classes = useStyles();
 
-    const [bias, setBias] = useState({ biasText: "" });
+    const [tickets, setTickets] = useState({ ticketsText: "" });
 
     // TODO: move this get request to a separate component
-
-    /*useEffect(() => {
-		const biases = getBiases()
-		console.log(biases)
-		setBias({...bias, biasList: biases})
-  	}, [bias])*/
-
     // TODO: clear the form after submit properly
     const handleSubmit = (e) => {
         e.preventDefault();
-        postBias(bias);
-        setBias({ ...bias, biasText: "" });
+        postTicket(tickets);
+        setTickets({ ...tickets, ticketsText: "" });
     };
 
     return (
         <Container maxWidth="lg">
-            <Form setBias={setBias} bias={bias} handleSubmit={handleSubmit} />
             <Grid className={classes.test}>
                 <Grid item size="xs">
                     <Typography variant="h3" align="center">
-                        {bias.biasText}
+                        {tickets.ticketsText}
                     </Typography>
                 </Grid>
             </Grid>

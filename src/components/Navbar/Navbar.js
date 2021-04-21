@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from "react";
 import { Link, useHistory } from "react-router-dom";
-import { AppBar, Avatar, Button, Toolbar, Typography } from "@material-ui/core";
+import { AppBar, Button, Toolbar, Typography } from "@material-ui/core";
 
 export default function Navbar() {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")))
 
     useEffect(() => {
-        const token = user?.token
+        // const token = user?.token
         setUser(JSON.parse(localStorage.getItem("profile")))
     }, [])
 

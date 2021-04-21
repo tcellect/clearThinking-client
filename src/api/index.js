@@ -2,8 +2,8 @@ import axios from "axios";
 
 const API = axios.create({ baseURL: "http://localhost:5000" });
 
-export const getBiases = async () =>
-    await API.get("/bias").then(
+export const getTickets = () =>
+    API.get("/ticket").then(
         (response) => {
             return response.data;
         },
@@ -11,8 +11,8 @@ export const getBiases = async () =>
             console.log(error);
         }
     );
-export const postBias = (bias) =>
-    API.post("/bias", bias).then(
+export const postTicket = (ticket) =>
+    API.post(`/ticket`, ticket).then(
         (response) => {
             console.log("post response: ", response);
         },
